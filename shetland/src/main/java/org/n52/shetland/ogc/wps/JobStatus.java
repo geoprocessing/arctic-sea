@@ -21,6 +21,10 @@ import java.util.Objects;
 import com.google.common.base.Strings;
 
 /**
+ * add more states for environmental model execution
+ * @author mingda zhang
+ */
+/**
  * Basic status set to communicate the status of a server-side job to the
  * client. Extensions of this specification may introduce additional states for
  * fine-grained monitoring or domain-specific purposes.
@@ -47,6 +51,16 @@ public class JobStatus {
     private static final JobStatus RUNNING = new JobStatus("Running");
 
     private final String value;
+
+    /**
+     * states for model execution. mingda
+     */
+    private static final JobStatus INITIALIZING = new JobStatus("Initializing");
+    private static final JobStatus INITIALIZED = new JobStatus("Initialized");
+    private static final JobStatus UPDATING = new JobStatus("Updating");
+    private static final JobStatus UPDATED = new JobStatus("Updated");
+    private static final JobStatus DONE = new JobStatus("Done");
+    private static final JobStatus FINISHING = new JobStatus("Finishing");
 
     public JobStatus(String value) {
         this.value = Objects.requireNonNull(Strings.emptyToNull(value));
@@ -97,6 +111,28 @@ public class JobStatus {
         return RUNNING;
     }
 
+    public static JobStatus initializing() {
+        return INITIALIZING;
+    }
 
+    public static JobStatus initialized() {
+        return INITIALIZED;
+    }
+
+    public static JobStatus updating() {
+        return UPDATING;
+    }
+
+    public static JobStatus updated() {
+        return UPDATED;
+    }
+
+    public static JobStatus done() {
+        return DONE;
+    }
+
+    public static JobStatus finishing() {
+        return FINISHING;
+    }
 
 }

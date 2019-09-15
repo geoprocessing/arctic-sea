@@ -14,28 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.shetland.ogc.wps;
+package org.n52.shetland.ogc.wps.request;
 
-import java.util.Optional;
+import org.n52.shetland.ogc.wps.WPSConstants;
 
 /**
- * TODO JavaDoc
- *
- * @author Christian Autermann
+ * @author Mingda Zhang
  */
-public enum ExecutionMode {
-    SYNC,
-    ASYNC,
-    STEP, //mingda zhang. for time-step based computation mode
-    AUTO;
+public class FinishRequest extends AbstractJobIdRequest {
+    public FinishRequest() {
+        super(null, null, WPSConstants.Operations.Finish.name());
+    }
 
-    public static Optional<ExecutionMode> fromString(String string) {
-        for (ExecutionMode t : values()) {
-            if (t.name().equalsIgnoreCase(string)) {
-                return Optional.of(t);
-            }
-        }
-        return Optional.empty();
+    public FinishRequest(String service, String version) {
+        super(service, version, WPSConstants.Operations.Finish.name());
+    }
+
+    public FinishRequest(String service, String version, String operationName) {
+        super(service, version, operationName);
     }
 
 }

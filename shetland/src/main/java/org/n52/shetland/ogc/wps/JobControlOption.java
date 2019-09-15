@@ -40,6 +40,8 @@ public class JobControlOption implements Comparable<JobControlOption> {
             = new JobControlOption("async-execute");
     private static final JobControlOption DISMISS
             = new JobControlOption("dismiss");
+    private static final JobControlOption STEP_EXECUTE
+    		= new JobControlOption("step-execute");
     private static final Comparator<JobControlOption> COMPARATOR
             = Comparator.nullsLast(Comparator.comparing(JobControlOption::getValue));
 
@@ -91,11 +93,19 @@ public class JobControlOption implements Comparable<JobControlOption> {
         return ASYNC_EXECUTE;
     }
 
+    public static JobControlOption step() {
+        return STEP_EXECUTE;
+    }
+
     public static JobControlOption dismiss() {
         return DISMISS;
     }
 
     public static Set<JobControlOption> defaultOptions() {
         return new HashSet<>(Arrays.asList(sync(), async(), dismiss()));
+    }
+
+    public static Set<JobControlOption> defaultModelOptions() {
+        return new HashSet<>(Arrays.asList(step(), dismiss()));
     }
 }

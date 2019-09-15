@@ -82,6 +82,8 @@ public interface WPSConstants {
         Execute,
         GetResult,
         GetStatus,
-        Dismiss;
+        Dismiss,
+        PerformStep,
+        Finish;
     }
 }
